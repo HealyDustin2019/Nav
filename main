@@ -1,0 +1,53 @@
+import java.util.Scanner;
+public class Main
+{
+  public static int mapWidth = 10;
+  public static int mapHeight = 10;
+  public static int h = 0;
+  public static int i = 0;
+  public static void main (String[]args)
+  {
+    buildMap ();
+  }
+  public static int buildMap ()
+  {
+    Scanner scan = new Scanner(System.in);
+    String a = scan.next();
+    if(a.equals("w"))
+        h--;
+    if(a.equals("s"))
+        h++;
+    if(a.equals("d"))
+        i++;
+    if(a.equals("a"))
+        i--;
+    if(a.equals("quit"))
+        return 1;
+    if(h > 9)
+        h = 9;
+    if(h < 0)
+        h = 0;
+    if(i > 9)
+        i = 9;
+    if(i < 0)
+        i = 0;
+    char [][] map = new char[mapHeight][mapWidth];
+    for (int x = 0; x < mapHeight; x++){
+        System.out.println();
+        for(int y = 0; y < mapWidth; y++){
+            map[x][y] = '@';
+            if(x == h  && i == y)
+                map[x][y] = '0';
+        }
+    }
+    for (int x = 0; x < mapHeight; x++){
+        System.out.println();
+        for(int y = 0; y < mapWidth; y++){
+            System.out.print(map[x][y]+"  ");
+        }
+    }
+    System.out.println();
+    buildMap();
+    return 1;
+  }
+}
